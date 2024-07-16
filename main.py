@@ -1,20 +1,27 @@
 # Import the modules from the modules folder
 from modules import CameraPackage
 from modules import MovementPacakge
+from modules import StateMachine
 
-# Import the OpenCV library
 import cv2
-
-# Import the logging library
 import logging
-
-# Import the numpy library
 import numpy as np
 
-# Create the main function
+
 def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
+    SM = StateMachine.SM()
+    CP = CameraPackage.CameraPackage()
+    MP = MovementPacakge.MovementPackage()
+    
+    inputs = {
+        'X': 0,
+        'Y': 0,
+        'Z': 0,
+        'Rz': 0,
+        'Torp1': 0,
+        'Torp2': 0,
+        'claw': 0
+    }
+    
+    while True:
+        pass

@@ -1,12 +1,22 @@
-import cv2
 from ultralytics import YOLO
+import pyautogui
+import cv2
+import os
 
 
 class CameraPackage:
     def __init__(self):
-        self.imgs_dir = input('Enter the full directory of the images folder: ')
-        
         self.model = YOLO("yolov8n.pt")
+    
+    def take_picture(self):
+        screenshot = pyautogui.screenshot()
+        screenshot.save("screenshot.png")
+        img = cv2.imread("screenshot.png")
+        os.remove("screenshot.png")
+        return img
+    
+    def gather_distance_measurement(self, img):
+        pass
     
     def predict(self, img, classes=[], conf=0.5):
         if classes:
@@ -25,7 +35,7 @@ class CameraPackage:
 
 if __name__ == '__main__':
     camera_package = CameraPackage()
-    img = cv2.imread('test.jpg')
+    img = camera_package.take_picture()
     img, results = camera_package.predict_and_detect(img)
     cv2.imshow('img', img)
     cv2.waitKey(0)
