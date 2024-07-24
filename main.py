@@ -1,10 +1,8 @@
 from ultralytics import YOLO
+import pyautogui
+import cv2
+import os
 
-model = YOLO('yolov8n.pt')
+model = YOLO('models/prequals.pt')
 
-results = model.train(
-    data='machine_vision/data.yaml',
-    imgsz=640,
-    epochs=200,
-    batch_size=8
-)
+
