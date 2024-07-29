@@ -94,7 +94,16 @@ def process_decisions():
         if len(objects) == 0:
             return
         else:
-            pass
+            if objects[0].object_name == 'Gate':
+                width = objects[0].object_width
+                
+                if width < 200:
+                    output['X'] = 1.0
+                else:
+                    output['X'] = 0.0
+        
+        # Make the post request to the server to control the movement
+        requests.post('http://localhost:5000/movement', json=output)
 
 def process_movement():
     while True:
